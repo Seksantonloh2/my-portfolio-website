@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About Lady Tradies Australia — Women in Trades Since 2012</title>
+<meta name="description" content="Lady Tradies Australia has helped Australians find women in trades since 2012, and helped tradeswomen get found.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="about">
+<div id="site-header"></div>
+
+<main>
+  <section class="page-hero" aria-labelledby="h1">
+    <div class="wrap">
+      <nav class="crumbs mono" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>About</span></nav>
+      <h1 id="h1" class="h1 blur-in" data-split>More women <em class="hi">on</em> the tools.</h1>
+      <p class="sub blur-in" data-split style="--d:250ms">Since 2012 we've helped Australians find tradeswomen, and helped tradeswomen get found.</p>
+    </div>
+  </section>
+
+  <section class="wrap about-split" style="padding-bottom:clamp(96px,12vw,160px)">
+    <div class="media reveal" data-ill="Builder|Photo to come: founder on site"></div>
+    <div>
+      <p class="eyebrow mono">Why we exist</p>
+      <h2 class="h2 blur-in" data-split style="margin-top:20px;font-size:clamp(40px,5vw,72px)">Ask for her <em class="hi">by</em> name.</h2>
+      <p class="sub reveal">Plenty of people would rather have a woman in their home, or just want to back women in trades. Until we came along, there was nowhere to find her.</p>
+      <p class="reveal" style="color:var(--muted);margin-top:20px;max-width:56ch">Lady Tradies started as a list of female tradespeople and has grown into a national directory. Every trade is covered, from carpentry and electrical to plumbing, tiling and landscaping. Tradeswomen also come to us for resources, networking and advice on starting out.</p>
+    </div>
+  </section>
+
+  <section class="tint sec" aria-labelledby="tl-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="tl-h" class="h2 blur-in" data-split>How it <em class="hi">grew.</em></h2>
+        <p class="sub reveal">The founder's full story is coming soon. The milestones below are ready for the client to fill in.</p>
+      </div>
+      <div class="timeline">
+        <div class="reveal"><b>2012</b><div><h3>The directory begins</h3><p>A simple list of women working in trades, shared with anyone looking to hire one.</p></div></div>
+        <div class="reveal"><b>Growth</b><div><h3>Going national</h3><p>Listings spread into every state and territory, across cities and regional towns. [Year and details to confirm]</p></div></div>
+        <div class="reveal"><b>Today</b><div><h3>A network, not just a list</h3><p>A directory, a guide to getting started, and a community of tradeswomen backing each other.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="v-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="v-h" class="h2 blur-in" data-split>What we <em class="hi">stand</em> for.</h2>
+        <p class="sub reveal">There are three things we won't budge on.</p>
+      </div>
+      <div class="values">
+        <div class="reveal"><p class="mono" style="color:var(--muted)">01</p><h3>Direct contact</h3><p>Customers deal straight with the tradeswoman. We don't sell leads, add middle-men or take a commission.</p></div>
+        <div class="reveal" style="--d:80ms"><p class="mono" style="color:var(--muted)">02</p><h3>Real tradespeople</h3><p>Every listing is a working tradeswoman with her own business, licence details and service area.</p></div>
+        <div class="reveal" style="--d:160ms"><p class="mono" style="color:var(--muted)">03</p><h3>The next generation</h3><p>We help girls and women find a trade that suits them, and connect them with women already doing it.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec final" aria-labelledby="final-h">
+    <div class="wrap">
+      <h2 id="final-h" class="h2 blur-in" data-split>Hire her. <em class="hi">Or</em> be her.</h2>
+      <p class="sub reveal">Find a tradeswoman near you, or put your business in front of locals.</p>
+      <div class="ctas reveal" id="ctas"></div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<script src="assets/site.js"></script>
+<script>
+(() => {
+const { $, $$, illus, btn } = window.LT;
+$$('[data-ill]').forEach((el, i) => { const [t, l] = el.dataset.ill.split('|'); el.innerHTML = illus(t, i, l); });
+$('#ctas').innerHTML = btn('directory.html', 'Find a tradie') + btn('join.html', 'List your business', 'btn-ghost', false);
+})();
+</script>
+</body>
+</html>

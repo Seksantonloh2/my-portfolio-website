@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tradeswoman Profile — Lady Tradies Australia</title>
+<meta name="description" content="A tradeswoman's profile on Lady Tradies Australia: her services, service area, reviews and how to contact her for a quote.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="directory">
+<div id="site-header"></div>
+<main id="profile-root"></main>
+<div id="site-footer"></div>
+<script src="assets/data.js"></script>
+<script src="assets/site.js"></script>
+<script>
+(() => {
+const { $, $$, esc, illus, initials, animate, btn, ARROW } = window.LT;
+const id = new URLSearchParams(location.search).get('id');
+const t = window.LT_TRADIES.find(x => x.id === id) || window.LT_TRADIES[0];
+const idx = window.LT_TRADIES.indexOf(t);
+document.title = `${t.biz}: ${t.trade} in ${t.suburb} ${t.state} | Lady Tradies Australia`;
+const RV = window.LT_REVIEWS;
+const SUBURBS = { VIC: 'Melbourne', NSW: 'Sydney', QLD: 'Brisbane', WA: 'Perth', SA: 'Adelaide', TAS: 'Hobart', ACT: 'Canberra', NT: 'Darwin' };
+
+$('#profile-root').innerHTML = `
+<section class="page-hero" style="padding-bottom:40px">
+  <div class="wrap">
+    <nav class="crumbs mono" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="directory.html?trade=${t.trade}">${t.trade}s</a><span>/</span><span>${esc(t.biz)}</span></nav>
+    <div class="pf-head reveal">
+      <span class="avatar" aria-hidden="true">${initials(t.name)}</span>
+      <div><p class="mono" style="color:var(--muted)">${t.trade} · ${esc(t.suburb)} ${t.state} ${t.pc}</p>
+      <span class="status ${t.open ? 'on' : 'off'}" style="margin-top:6px">${t.open ? 'Taking new jobs' : 'Booked out: you can still join the waitlist'}</span></div>
+    </div>
+    <h1 class="h1 blur-in" data-split style="margin-top:28px;font-size:clamp(48px,6.4vw,88px)">${esc(t.biz)}</h1>
+    <p class="sub blur-in" data-split style="--d:250ms">Run by ${esc(t.name)}. ${t.years} years in the trade.</p>
+    <p class="demo-flag reveal" style="margin-top:24px">Demo listing: sample data</p>
+  </div>
+</section>
+
+<div class="wrap profile">
+  <div>
+    <div class="gallery reveal">
+      <div>${illus(t.trade, idx, 'Recent job')}</div><div>${illus(t.trade, idx + 1)}</div><div>${illus(t.trade, idx + 2)}</div>
+    </div>
+    <div class="pf-stats reveal">
+      <div><b><span data-count="${t.rating.toFixed(1)}">${t.rating.toFixed(1)}</span>★</b><span>Average rating</span></div>
+      <div><b data-count="${t.reviews}">${t.reviews}</b><span>Reviews</span></div>
+      <div><b data-count="${t.years}">${t.years}</b><span>Years in the trade</span></div>
+    </div>
+
+    <h2 class="h3 blur-in" data-split style="margin-top:0">About <em class="hi">${esc(t.name.split(' ')[0])}</em></h2>
+    <p class="reveal" style="color:var(--muted);font-size:19px;margin-top:16px;max-width:60ch">${esc(t.about)}</p>
+    <div class="pf-tags reveal"><span>Licence no. supplied by tradie</span><span>Fully insured</span><span>Servicing ${SUBURBS[t.state]} &amp; surrounds</span></div>
+
+    <h2 class="h3 blur-in" data-split>Services</h2>
+    <ul class="svc reveal">${t.services.map((s, i) => `<li>${esc(s)}<span>${['Free quote', 'Written quote', 'On-site measure', 'Free quote'][i % 4]}</span></li>`).join('')}</ul>
+
+    <h2 class="h3 blur-in" data-split>What customers say</h2>
+    <div class="rv reveal">${[0, 1, 2].map(k => { const r = RV[(idx + k) % RV.length]; return `<article><p>“${esc(r[0])}”</p><small>★★★★★ · ${r[1]} · sample review</small></article>`; }).join('')}</div>
+  </div>
+
+  <aside class="side reveal" aria-labelledby="q-h">
+    <h2 id="q-h">Ask ${esc(t.name.split(' ')[0])} for a quote</h2>
+    <p style="color:var(--muted);margin-top:8px;font-size:15px">This goes straight to her. Most tradies reply within a business day.</p>
+    <form class="form" id="enq" novalidate>
+      <div class="field"><label for="e-name">Your name</label><input id="e-name" name="name" autocomplete="name" required><span class="err" aria-live="polite"></span></div>
+      <div class="two">
+        <div class="field"><label for="e-phone">Phone</label><input id="e-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required><span class="err" aria-live="polite"></span></div>
+        <div class="field"><label for="e-pc">Postcode</label><input id="e-pc" name="postcode" inputmode="numeric" maxlength="4" required><span class="err" aria-live="polite"></span></div>
+      </div>
+      <div class="field"><label for="e-svc">What do you need?</label><select id="e-svc" name="service">${t.services.map(s => `<option>${esc(s)}</option>`).join('')}<option>Something else</option></select></div>
+      <div class="field"><label for="e-msg">Tell her about the job</label><textarea id="e-msg" name="message" required placeholder="e.g. 4 × 3 m deck off the back door, ground is fairly level"></textarea><span class="err" aria-live="polite"></span></div>
+      <button class="btn btn-accent" type="submit"><span class="lbl"><span>Send enquiry</span><span>Send enquiry</span></span><span class="arr" aria-hidden="true">${ARROW}</span></button>
+      <p class="hint" style="color:var(--muted);font-size:13px">Demo form: nothing is sent.</p>
+    </form>
+  </aside>
+</div>`;
+animate($('#profile-root'));
+requestAnimationFrame(() => $$('.page-hero .blur-in, .page-hero .reveal').forEach(el => el.classList.add('in')));
+
+// enquiry validation
+const f = $('#enq');
+const rules = {
+  'e-name': v => v.trim().length >= 2 || 'Please add your name.',
+  'e-phone': v => /^(0|61)[2-478]\d{8}$/.test(v.replace(/\D/g, '')) || 'Please enter an Australian phone number, e.g. 0412 345 678.',
+  'e-pc': v => /^\d{4}$/.test(v) || 'Please enter a 4-digit postcode.',
+  'e-msg': v => v.trim().length >= 10 || 'A sentence or two about the job helps her quote.',
+};
+const check = el => { const r = rules[el.id](el.value); const ok = r === true; el.setAttribute('aria-invalid', !ok); el.parentElement.querySelector('.err').textContent = ok ? '' : r; return ok; };
+Object.keys(rules).forEach(k => { const el = $('#' + k); el.addEventListener('blur', () => el.value && check(el)); el.addEventListener('input', () => el.getAttribute('aria-invalid') === 'true' && check(el)); });
+$('#e-pc').addEventListener('input', e => e.target.value = e.target.value.replace(/\D/g, '').slice(0, 4));
+f.addEventListener('submit', e => {
+  e.preventDefault();
+  const bad = Object.keys(rules).map(k => $('#' + k)).filter(el => !check(el));
+  if (bad.length) { bad[0].focus(); return; }
+  f.outerHTML = `<div class="sent" role="status"><b><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 8.5 3 3 7-7"/></svg>Enquiry sent</b><p style="color:var(--muted)">${esc(t.name.split(' ')[0])} will be in touch soon. (This is a demo, so nothing was actually sent.)</p>${btn('directory.html?trade=' + t.trade, 'See more ' + t.trade.toLowerCase() + 's', 'btn-ghost', false)}</div>`;
+});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact Lady Tradies Australia</title>
+<meta name="description" content="Questions about the directory, your listing or working with Lady Tradies Australia? Send us a message.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="contact">
+<div id="site-header"></div>
+
+<main>
+  <section class="page-hero" aria-labelledby="h1">
+    <div class="wrap">
+      <nav class="crumbs mono" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Contact</span></nav>
+      <h1 id="h1" class="h1 blur-in" data-split>Say <em class="hi">g'day.</em></h1>
+      <p class="sub blur-in" data-split style="--d:250ms">Questions about the directory, your listing or working with us? Send a message and we'll get back to you.</p>
+    </div>
+  </section>
+
+  <div class="wrap contact">
+    <div>
+      <p class="eyebrow mono reveal">Looking for a tradie?</p>
+      <p class="reveal" style="color:var(--muted);margin-top:12px;max-width:44ch">The quickest way is to <a class="ul" href="directory.html" style="color:var(--ink)">search the directory</a> and contact a tradeswoman directly. We don't book or quote jobs ourselves.</p>
+      <ul class="contact-list reveal">
+        <li><span>Listings &amp; account help</span><b>Choose "My listing" in the form</b></li>
+        <li><span>Media, events &amp; partnerships</span><b>Choose "Media &amp; partnerships"</b></li>
+        <li><span>Where we are</span><b>Online, Australia-wide</b></li>
+        <li><span>Replies</span><b><span class="status on" style="font-family:var(--f-body);font-size:15px">Usually within 2 business days</span></b></li>
+      </ul>
+    </div>
+
+    <div class="wiz reveal" id="box">
+      <h2 class="h3" style="margin-top:0">Send a message</h2>
+      <form class="form" id="cf" novalidate>
+        <div class="two">
+          <div class="field"><label for="c-name">Name</label><input id="c-name" autocomplete="name" required><span class="err" aria-live="polite"></span></div>
+          <div class="field"><label for="c-email">Email</label><input id="c-email" type="email" autocomplete="email" required><span class="err" aria-live="polite"></span></div>
+        </div>
+        <div class="field"><span style="font-size:14px;font-weight:500">What's it about?</span>
+          <div class="check-chips" role="radiogroup">
+            <label><input type="radio" name="topic" value="General" checked><span>General</span></label>
+            <label><input type="radio" name="topic" value="My listing"><span>My listing</span></label>
+            <label><input type="radio" name="topic" value="Getting into a trade"><span>Getting into a trade</span></label>
+            <label><input type="radio" name="topic" value="Media"><span>Media &amp; partnerships</span></label>
+          </div></div>
+        <div class="field"><label for="c-msg">Message</label><textarea id="c-msg" required></textarea><span class="err" aria-live="polite"></span></div>
+        <button class="btn btn-accent" type="submit"><span class="lbl"><span>Send message</span><span>Send message</span></span><span class="arr" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 6h8M6.5 2.5 10 6l-3.5 3.5"/></svg></span></button>
+        <p class="hint" style="color:var(--muted);font-size:13px">Demo form: nothing is sent.</p>
+      </form>
+    </div>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+<script src="assets/site.js"></script>
+<script>
+(() => {
+const { $, esc } = window.LT;
+const rules = {
+  'c-name': x => x.length >= 2 || 'Please add your name.',
+  'c-email': x => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(x) || 'Please enter a valid email.',
+  'c-msg': x => x.length >= 10 || 'Please write a little more so we can help.',
+};
+const check = id => { const el = $('#' + id), r = rules[id](el.value.trim()), ok = r === true; el.setAttribute('aria-invalid', !ok); el.parentElement.querySelector('.err').textContent = ok ? '' : r; return ok; };
+Object.keys(rules).forEach(id => $('#' + id).addEventListener('input', e => e.target.getAttribute('aria-invalid') === 'true' && check(id)));
+$('#cf').addEventListener('submit', e => {
+  e.preventDefault();
+  const bad = Object.keys(rules).filter(id => !check(id));
+  if (bad.length) { $('#' + bad[0]).focus(); return; }
+  $('#box').innerHTML = `<div class="sent" role="status" style="border:0;padding:0"><b><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 8.5 3 3 7-7"/></svg>Message sent</b><h2 class="h3" style="margin-top:8px">Thanks, ${esc($('#c-name').value.trim().split(' ')[0])}.</h2><p style="color:var(--muted)">We'll reply to ${esc($('#c-email').value.trim())} within two business days. This is a demo, so nothing was sent.</p></div>`;
+});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>List Your Trade Business — Lady Tradies Australia</title>
+<meta name="description" content="Are you a tradeswoman? List your business on Lady Tradies Australia so local customers can find you by trade and postcode.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="join">
+<div id="site-header"></div>
+
+<main>
+  <section class="page-hero" aria-labelledby="h1">
+    <div class="wrap">
+      <nav class="crumbs mono" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>List your business</span></nav>
+      <h1 id="h1" class="h1 blur-in" data-split>Your trade. <em class="hi">Seen.</em></h1>
+      <p class="sub blur-in" data-split style="--d:250ms">Get found by locals searching for a female tradie. Set up your listing in three steps.</p>
+    </div>
+  </section>
+
+  <div class="wrap join-page">
+    <div>
+      <ul class="perks reveal" style="margin-top:0">
+        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m3 8.5 3 3 7-7"/></svg><div><b>Show up in local searches</b>Customers search by trade and postcode, and you appear for the areas you cover.</div></li>
+        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m3 8.5 3 3 7-7"/></svg><div><b>Enquiries come straight to you</b>We don't sell leads or take a cut of the job.</div></li>
+        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m3 8.5 3 3 7-7"/></svg><div><b>Switch your availability on and off</b>Mark yourself "Booked out" when you're flat out.</div></li>
+        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m3 8.5 3 3 7-7"/></svg><div><b>Join the network</b>Meet other women in trades across Australia.</div></li>
+      </ul>
+      <div class="preview reveal">
+        <p class="mono" style="color:var(--muted);margin-bottom:14px">Live preview of your listing</p>
+        <div id="preview"></div>
+      </div>
+    </div>
+
+    <div class="wiz reveal" id="wiz">
+      <div class="wiz-steps" aria-hidden="true"><div class="on">01 · You</div><div>02 · Your trade</div><div>03 · Area</div></div>
+      <form id="jf" novalidate>
+        <fieldset class="wiz-pane on" data-step="0" style="border:0">
+          <legend class="h3" style="margin:0 0 4px">About you</legend>
+          <div class="field"><label for="j-name">Your name</label><input id="j-name" autocomplete="name" required><span class="err" aria-live="polite"></span></div>
+          <div class="field"><label for="j-biz">Business name</label><input id="j-biz" autocomplete="organization" required><span class="err" aria-live="polite"></span></div>
+          <div class="two">
+            <div class="field"><label for="j-email">Email</label><input id="j-email" type="email" autocomplete="email" required><span class="err" aria-live="polite"></span></div>
+            <div class="field"><label for="j-phone">Mobile</label><input id="j-phone" type="tel" inputmode="tel" autocomplete="tel" required><span class="err" aria-live="polite"></span></div>
+          </div>
+        </fieldset>
+        <fieldset class="wiz-pane" data-step="1" style="border:0">
+          <legend class="h3" style="margin:0 0 4px">Your trade</legend>
+          <div class="field"><label for="j-trade">Main trade</label>
+            <select id="j-trade"><option>Carpenter</option><option>Electrician</option><option>Plumber</option><option>Painter</option><option>Tiler</option><option>Landscaper</option><option>Builder</option><option>Handywoman</option></select></div>
+          <div class="field"><span style="font-size:14px;font-weight:500">Services you offer <span class="hint">(pick any)</span></span><div class="check-chips" id="j-svcs"></div></div>
+          <div class="two">
+            <div class="field"><label for="j-years">Years in the trade</label><input id="j-years" type="number" min="0" max="60" inputmode="numeric" required><span class="err" aria-live="polite"></span></div>
+            <div class="field"><label for="j-lic">Licence number <span class="hint">(if your trade needs one)</span></label><input id="j-lic"></div>
+          </div>
+        </fieldset>
+        <fieldset class="wiz-pane" data-step="2" style="border:0">
+          <legend class="h3" style="margin:0 0 4px">Where you work</legend>
+          <div class="two">
+            <div class="field"><label for="j-suburb">Base suburb</label><input id="j-suburb" autocomplete="address-level2" required><span class="err" aria-live="polite"></span></div>
+            <div class="field"><label for="j-pc">Postcode</label><input id="j-pc" inputmode="numeric" maxlength="4" autocomplete="postal-code" required><span class="err" aria-live="polite"></span></div>
+          </div>
+          <div class="field"><label for="j-radius">How far will you travel? <b id="j-rv">25 km</b></label><input id="j-radius" type="range" min="5" max="100" step="5" value="25" style="padding:0;border:0;min-height:32px;accent-color:#FD37D6"></div>
+          <div class="field"><label for="j-about">A line about your business</label><textarea id="j-about" placeholder="e.g. Decks, pergolas and renovation framing across Melbourne's inner north."></textarea></div>
+        </fieldset>
+        <div class="wiz-nav">
+          <button type="button" class="back" id="j-back" hidden>← Back</button>
+          <span></span>
+          <button class="btn btn-accent" type="submit" id="j-next"><span class="lbl"><span>Next</span><span>Next</span></span><span class="arr" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 6h8M6.5 2.5 10 6l-3.5 3.5"/></svg></span></button>
+        </div>
+        <p class="hint" style="color:var(--muted);font-size:13px;margin-top:16px">Demo form: nothing is sent or stored.</p>
+      </form>
+    </div>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+<script src="assets/site.js"></script>
+<script>
+(() => {
+const { $, $$, esc, illus, initials, stateOf, btn } = window.LT;
+const SVCS = {
+  Carpenter: ['Decks', 'Framing', 'Doors', 'Built-ins', 'Pergolas'], Electrician: ['Lighting', 'Power points', 'Switchboards', 'Solar', 'EV chargers'],
+  Plumber: ['Hot water', 'Leaks', 'Drains', 'Gas fitting', 'Bathrooms'], Painter: ['Interiors', 'Exteriors', 'Feature walls', 'Decks & fences'],
+  Tiler: ['Bathrooms', 'Splashbacks', 'Floors', 'Waterproofing'], Landscaper: ['Garden design', 'Paving', 'Retaining walls', 'Turf'],
+  Builder: ['Extensions', 'Renovations', 'New homes', 'Granny flats'], Handywoman: ['Odd jobs', 'Repairs', 'Assembly', 'Hanging & shelving'],
+};
+let step = 0;
+const panes = $$('.wiz-pane'), tabs = $$('.wiz-steps div'), back = $('#j-back'), next = $('#j-next');
+const v = id => $('#' + id).value.trim();
+
+function drawSvcs() {
+  $('#j-svcs').innerHTML = SVCS[v('j-trade')].map(s => `<label><input type="checkbox" value="${s}"><span>${s}</span></label>`).join('');
+  $$('#j-svcs input').forEach(i => i.addEventListener('change', preview));
+}
+function preview() {
+  const trade = v('j-trade'), name = v('j-name') || 'Your name', biz = v('j-biz') || 'Your business', sub = v('j-suburb') || 'Your suburb', st = stateOf(v('j-pc')) || '';
+  $('#preview').innerHTML = `<div class="pro"><div class="media">${illus(trade, 1)}</div><div class="body">
+    <div class="row"><span class="mono" style="color:var(--muted)">${trade}</span><span class="status on">Taking new jobs</span></div>
+    <div class="row" style="justify-content:flex-start;gap:14px"><span class="avatar" aria-hidden="true">${esc(initials(name))}</span><div><h3>${esc(biz)}</h3><p class="meta">${esc(name)} · ${esc(sub)} ${st}</p></div></div>
+    <div class="foot"><span class="stars">New listing</span><span>${v('j-years') ? esc(v('j-years')) + ' yrs in the trade' : ''}</span></div></div></div>`;
+}
+const rules = [
+  { 'j-name': x => x.length >= 2 || 'Please add your name.', 'j-biz': x => x.length >= 2 || 'Please add your business name.',
+    'j-email': x => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(x) || 'Please enter a valid email.', 'j-phone': x => /^(0|61)4\d{8}$/.test(x.replace(/\D/g, '')) || 'Please enter an Australian mobile, e.g. 0412 345 678.' },
+  { 'j-years': x => (x !== '' && +x >= 0 && +x <= 60) || 'How many years have you been in the trade?' },
+  { 'j-suburb': x => x.length >= 2 || 'Please add your suburb.', 'j-pc': x => !!stateOf(x) || 'Please enter a valid Australian postcode.' },
+];
+function check(id, fn) {
+  const el = $('#' + id), r = fn(el.value.trim()), ok = r === true;
+  el.setAttribute('aria-invalid', !ok); el.parentElement.querySelector('.err').textContent = ok ? '' : r; return ok;
+}
+function go(n) {
+  step = n;
+  panes.forEach((p, i) => p.classList.toggle('on', i === n));
+  tabs.forEach((t, i) => t.classList.toggle('on', i <= n));
+  back.hidden = n === 0;
+  next.querySelector('.lbl').innerHTML = n === 2 ? '<span>Create my listing</span><span>Create my listing</span>' : '<span>Next</span><span>Next</span>';
+  const first = panes[n].querySelector('input,select'); first && first.focus({ preventScroll: true });
+}
+$('#jf').addEventListener('submit', e => {
+  e.preventDefault();
+  const bad = Object.entries(rules[step]).filter(([id, fn]) => !check(id, fn));
+  if (bad.length) { $('#' + bad[0][0]).focus(); return; }
+  if (step < 2) return go(step + 1);
+  $('#wiz').innerHTML = `<div class="sent" role="status" style="border:0;padding:0"><b><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 8.5 3 3 7-7"/></svg>Listing submitted</b>
+    <h2 class="h3" style="margin-top:8px">Welcome aboard, ${esc(v('j-name').split(' ')[0])}.</h2>
+    <p style="color:var(--muted)">We'll check your details and your listing will usually go live within two business days. This is a demo, so nothing was sent.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">${btn('directory.html', 'Browse the directory')}${btn('index.html', 'Back to home', 'btn-ghost', false)}</div></div>`;
+});
+back.addEventListener('click', () => go(step - 1));
+$('#j-trade').addEventListener('change', () => { drawSvcs(); preview(); });
+$('#j-pc').addEventListener('input', e => e.target.value = e.target.value.replace(/\D/g, '').slice(0, 4));
+$('#j-radius').addEventListener('input', e => $('#j-rv').textContent = e.target.value + ' km');
+$$('#jf input, #jf textarea').forEach(i => i.addEventListener('input', () => { preview(); if (i.getAttribute('aria-invalid') === 'true') { const r = rules[step][i.id]; r && check(i.id, r); } }));
+drawSvcs(); preview();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Find a Female Tradie Near You — Lady Tradies Australia</title>
+<meta name="description" content="Search Australia's directory of tradeswomen by trade and postcode: carpenters, electricians, plumbers, painters, tilers, landscapers and more.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="directory">
+<div id="site-header"></div>
+
+<main>
+  <section class="page-hero" aria-labelledby="h1">
+    <div class="wrap">
+      <nav class="crumbs mono" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Find a tradie</span></nav>
+      <h1 id="h1" class="h1 blur-in" data-split>Find <em class="hi">her</em> near you.</h1>
+      <p class="sub blur-in" data-split style="--d:250ms">Search by trade and postcode, then contact the tradeswoman directly. It's free to search.</p>
+      <p class="demo-flag reveal" style="margin-top:28px;--d:400ms">Demo: every listing on this page is sample data</p>
+    </div>
+  </section>
+
+  <div class="dir-bar">
+    <div class="wrap">
+      <form class="finder" id="finder" novalidate role="search" aria-label="Search the directory">
+        <select id="f-trade" name="trade" aria-label="Trade">
+          <option value="">Any trade</option>
+          <option>Carpenter</option><option>Electrician</option><option>Plumber</option><option>Painter</option>
+          <option>Tiler</option><option>Landscaper</option><option>Builder</option><option>Handywoman</option>
+        </select>
+        <span class="sep" aria-hidden="true"></span>
+        <input id="f-pc" name="postcode" inputmode="numeric" maxlength="4" placeholder="Postcode" aria-label="Postcode" aria-describedby="f-msg" autocomplete="postal-code">
+        <button class="btn btn-accent" type="submit"><span class="lbl"><span>Search</span><span>Search</span></span><span class="arr" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="5" cy="5" r="3.5"/><path d="m7.6 7.6 3 3"/></svg></span></button>
+      </form>
+      <label class="toggle"><input type="checkbox" id="f-open"> Taking new jobs</label>
+    </div>
+  </div>
+
+  <section class="wrap" aria-labelledby="res-h">
+    <p class="finder-msg" id="f-msg" role="status" aria-live="polite" style="padding-left:0;margin-top:12px"></p>
+    <div class="trade-chips" id="chips" role="group" aria-label="Filter by trade"></div>
+    <div class="results-head">
+      <h2 id="res-h" aria-live="polite">All tradeswomen</h2>
+      <label><span class="mono" style="margin-right:10px">Sort</span>
+        <select id="f-sort" aria-label="Sort results">
+          <option value="near">Nearest first</option>
+          <option value="rating">Highest rated</option>
+          <option value="reviews">Most reviewed</option>
+          <option value="years">Most experienced</option>
+        </select>
+      </label>
+    </div>
+    <div class="results" id="results"></div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<script src="assets/data.js"></script>
+<script src="assets/site.js"></script>
+<script>
+(() => {
+const { $, $$, esc, illus, initials, stateOf, animate, btn } = window.LT;
+const DATA = window.LT_TRADIES;
+const TRADES = ['Carpenter', 'Electrician', 'Plumber', 'Painter', 'Tiler', 'Landscaper', 'Builder', 'Handywoman'];
+const PLURAL = { Carpenter: 'carpenters', Electrician: 'electricians', Plumber: 'plumbers', Painter: 'painters', Tiler: 'tilers', Landscaper: 'landscapers', Builder: 'builders', Handywoman: 'handywomen' };
+const qs = new URLSearchParams(location.search);
+const st = { trade: TRADES.includes(qs.get('trade')) ? qs.get('trade') : '', pc: /^\d{4}$/.test(qs.get('postcode') || '') ? qs.get('postcode') : '', open: false, sort: 'near' };
+
+const ftrade = $('#f-trade'), fpc = $('#f-pc'), fopen = $('#f-open'), fsort = $('#f-sort'), msg = $('#f-msg');
+ftrade.value = st.trade; fpc.value = st.pc;
+
+$('#chips').innerHTML = ['', ...TRADES].map(t => `<button class="chip" data-t="${t}" aria-pressed="${t === st.trade}">${t ? PLURAL[t][0].toUpperCase() + PLURAL[t].slice(1) : 'All trades'}</button>`).join('');
+$$('#chips .chip').forEach(c => c.addEventListener('click', () => { st.trade = c.dataset.t; ftrade.value = st.trade; render(); }));
+
+function sync() {
+  const p = new URLSearchParams();
+  if (st.trade) p.set('trade', st.trade);
+  if (st.pc) p.set('postcode', st.pc);
+  history.replaceState(null, '', location.pathname + (p.toString() ? '?' + p : ''));
+}
+
+function card(t, i) {
+  return `<a class="pro reveal" style="--d:${(i % 3) * 70}ms" href="profile.html?id=${t.id}">
+    <div class="media">${illus(t.trade, i)}</div>
+    <div class="body">
+      <div class="row"><span class="mono" style="color:var(--muted)">${t.trade}</span><span class="status ${t.open ? 'on' : 'off'}">${t.open ? 'Taking new jobs' : 'Booked out'}</span></div>
+      <div class="row" style="justify-content:flex-start;gap:14px"><span class="avatar" aria-hidden="true">${initials(t.name)}</span><div><h3>${esc(t.biz)}</h3><p class="meta">${esc(t.name)} · ${esc(t.suburb)} ${t.state}</p></div></div>
+      <div class="foot"><span class="stars">★ ${t.rating.toFixed(1)} <small>(${t.reviews})</small></span><span>${t.years} yrs in the trade</span></div>
+    </div></a>`;
+}
+
+function render() {
+  sync();
+  $$('#chips .chip').forEach(c => c.setAttribute('aria-pressed', c.dataset.t === st.trade));
+  const userState = stateOf(st.pc);
+  let list = DATA.filter(t => (!st.trade || t.trade === st.trade) && (!st.open || t.open));
+  const near = t => (userState && t.state === userState ? 0 : 1e5) + (st.pc ? Math.abs(+t.pc - +st.pc) : 0);
+  const sorters = { near: (a, b) => near(a) - near(b) || b.rating - a.rating, rating: (a, b) => b.rating - a.rating || b.reviews - a.reviews, reviews: (a, b) => b.reviews - a.reviews, years: (a, b) => b.years - a.years };
+  list.sort(sorters[st.sort]);
+  const inState = userState ? list.filter(t => t.state === userState).length : null;
+  const what = st.trade ? PLURAL[st.trade] : 'tradeswomen';
+  const noun = n => n === 1 ? (st.trade ? st.trade.toLowerCase() : 'tradeswoman') : what;
+  const more = list.length - (inState || 0);
+  $('#res-h').textContent = !st.pc
+    ? `${list.length} ${noun(list.length)} Australia-wide`
+    : inState
+      ? `${inState} ${noun(inState)} in ${userState}${more ? `, plus ${more} further away` : ''}`
+      : list.length ? `No ${what} in ${userState} yet. Here ${more === 1 ? 'is' : 'are'} the nearest ${more === 1 ? '' : more + ' '}${noun(more)}:` : `No ${what} found`;
+  $('#results').innerHTML = list.length ? list.map(card).join('') :
+    `<div class="empty"><h3>No ${what} listed yet.</h3><p>Try another trade, or turn off "Taking new jobs". New tradeswomen join every week.</p>${btn('join.html', 'Know one? Invite her to list')}</div>`;
+  animate($('#results'));
+}
+
+fpc.addEventListener('input', () => { fpc.value = fpc.value.replace(/\D/g, '').slice(0, 4); fpc.removeAttribute('aria-invalid'); msg.textContent = ''; msg.className = 'finder-msg'; });
+$('#finder').addEventListener('submit', e => {
+  e.preventDefault();
+  if (fpc.value && !stateOf(fpc.value)) {
+    fpc.setAttribute('aria-invalid', 'true'); msg.className = 'finder-msg err';
+    msg.textContent = 'Please enter a valid 4-digit Australian postcode.'; fpc.focus(); return;
+  }
+  st.trade = ftrade.value; st.pc = fpc.value; render();
+  $('#res-h').scrollIntoView({ behavior: 'smooth', block: 'center' });
+});
+ftrade.addEventListener('change', () => { st.trade = ftrade.value; render(); });
+fopen.addEventListener('change', () => { st.open = fopen.checked; render(); });
+fsort.addEventListener('change', () => { st.sort = fsort.value; render(); });
+render();
+})();
+</script>
+</body>
+</html>

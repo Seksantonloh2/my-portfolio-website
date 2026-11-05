@@ -6,7 +6,19 @@ The logo lives in `logo/`. Open `logo/index.html` for the brand sheet showing th
 
 Open either file in a browser. It's a single self-contained file with no libraries; Switzer and Inter fonts load from the web.
 
-## Sections
+## Pages (demo site)
+| Page | What it does |
+|---|---|
+| `index.html` | Home: hero with the 3D house and search, the scroll-built story, trades list, how it works, the "which trade?" quiz, list-your-business section, reviews, coverage, FAQ |
+| `directory.html` | Search by trade and postcode (`?trade=&postcode=`), trade chips, a "Taking new jobs" toggle and sorting. Same-state results come first, then the nearest elsewhere. Includes an empty state |
+| `profile.html?id=…` | Tradeswoman profile: gallery, count-up stats, about, services, reviews, and an enquiry form with AU phone/postcode checks and a success state |
+| `join.html` | Three-step "list your business" form with a live preview of the listing card |
+| `about.html` | Mission, milestones (to confirm with the client), values, CTA |
+| `contact.html` | Contact form with a topic picker |
+
+Shared files are in `assets/`: `site.css` (all styles), `site.js` (header/footer, mobile menu, blur-in and reveal, count-ups, blurred page transitions, postcode → state lookup, trade line illustrations) and `data.js` (**16 fictional sample listings**, to be replaced with the real directory feed). Every page that shows listings is labelled as demo data.
+
+## Home page sections
 1. Header: logo, nav, "Find a tradie" CTA (fixed; turns light over light sections)
 2. Hero (dark), split layout: H1 + trade/postcode finder on the left, live 3D wireframe house on the right that builds itself on a loop and can be dragged to turn
 3. Trust bar: 4 count-up stats (**placeholder figures**)
