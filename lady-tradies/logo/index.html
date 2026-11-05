@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lady Tradies — Logo</title><link rel="icon" href="favicon.svg">
+<style>
+:root{--pink:#FD37D6;--ink:#191919;--paper:#fff;--tint:#F7F6F5;--line:#E9E7E5;--muted:#5F5E5C}
+*{box-sizing:border-box;margin:0}body{font:16px/1.6 Inter,system-ui,sans-serif;color:var(--ink);background:var(--paper);padding:56px 24px}
+.wrap{max-width:1100px;margin:0 auto}h1{font-size:clamp(40px,6vw,72px);letter-spacing:-.035em;line-height:1}
+.sub{color:var(--muted);font-size:20px;margin-top:16px;max-width:52ch}
+.mono{font:500 12px "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:48px}
+.tile{border:1px solid var(--line);border-radius:16px;min-height:280px;display:grid;place-items:center;position:relative;padding:40px}
+.tile .mono{position:absolute;left:20px;top:16px}.tile.ink{background:var(--ink);border-color:var(--ink)}.tile.ink .mono{color:#9a9895}
+.tile.pink{background:var(--pink);border-color:var(--pink)}.tile.pink .mono{color:var(--ink)}.tile.tint{background:var(--tint)}
+.wide{grid-column:1/-1}.sizes{display:flex;gap:28px;align-items:end}
+.anat{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:64px;align-items:center}
+ul{list-style:none;padding:0;border-top:1px solid var(--line)}li{padding:16px 0;border-bottom:1px solid var(--line);color:var(--muted)}li b{color:var(--ink)}
+.sw{display:flex;gap:12px;margin-top:24px}.sw div{flex:1;border-radius:12px;padding:56px 14px 12px;border:1px solid var(--line);font:500 12px "JetBrains Mono",monospace}
+@media(max-width:720px){.grid,.anat{grid-template-columns:1fr}}
+</style></head><body><div class="wrap">
+<p class="mono">Lady Tradies Australia · Brand mark</p>
+<h1 style="margin-top:16px">A roof over the LT.</h1>
+<p class="sub">An L and a T made from one rounded stroke, under a roof line. The tops of both letters follow the roof's pitch.</p>
+<div class="grid">
+  <div class="tile wide"><span class="mono">Primary lockup</span><img src="logo-horizontal.svg" alt="Lady Tradies logo" style="width:min(520px,100%)"></div>
+  <div class="tile tint"><span class="mono">Logomark</span><img src="logomark.svg" alt="" width="160"></div>
+  <div class="tile ink"><span class="mono">On ink</span><img src="logo-horizontal-white.svg" alt="" style="width:min(380px,100%)"></div>
+  <div class="tile pink"><span class="mono">One colour, on pink</span><img src="logomark-mono-ink.svg" alt="" width="160"></div>
+  <div class="tile"><span class="mono">Stacked</span><img src="logo-stacked.svg" alt="" width="220"></div>
+  <div class="tile wide tint"><span class="mono">Small sizes</span><div class="sizes"><img src="logomark.svg" width="128" alt=""><img src="logomark.svg" width="64" alt=""><img src="logomark.svg" width="32" alt=""><img src="logomark.svg" width="16" alt=""><img src="logomark-ink.svg" width="64" alt=""><img src="logomark-ink.svg" width="32" alt=""></div></div>
+</div>
+<div class="anat">
+  <img src="logomark.svg" alt="" style="width:100%;max-width:420px">
+  <div><ul>
+    <li><b>Grid:</b> 64 × 64 square, corner radius 16 (a quarter of the width)</li>
+    <li><b>Stroke:</b> 5.6 units, round caps and joins, used for the roof and both letters</li>
+    <li><b>Clear space:</b> keep at least ¼ of the mark's width empty on every side</li>
+    <li><b>Wordmark:</b> Inter Display Bold, tracking −2%, outlined to paths</li>
+    <li><b>Minimum size:</b> 16px for the mark, 120px wide for the lockup</li>
+    <li><b>Don't:</b> recolour the letters pink on white, stretch the mark, or add shadows</li>
+  </ul>
+  <div class="sw"><div style="background:#FD37D6;border-color:#FD37D6">#FD37D6</div><div style="background:#191919;color:#fff;border-color:#191919">#191919</div><div>#FFFFFF</div></div></div>
+</div></div></body></html>

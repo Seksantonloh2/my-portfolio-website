@@ -2,6 +2,8 @@
 
 `index.html` is the **light-mode demo in brand colours** (pink `#FD37D6`, ink `#191919`, white `#FFFFFF`). `dark.html` is the earlier dark concept that used a hi-vis amber accent.
 
+The logo lives in `logo/`. Open `logo/index.html` for the brand sheet showing the mark, lockups, one-colour versions, small sizes and usage rules.
+
 Open either file in a browser. It's a single self-contained file with no libraries; Switzer and Inter fonts load from the web.
 
 ## Sections
