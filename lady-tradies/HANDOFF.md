@@ -1,6 +1,8 @@
 # Lady Tradies Australia — 3D concept rebuild (Framer handoff)
 
-Open `index.html` in a browser. It's a single self-contained file with no libraries; Switzer and Inter fonts load from the web.
+`index.html` is the **light-mode demo in brand colours** (pink `#FD37D6`, ink `#191919`, white `#FFFFFF`). `dark.html` is the earlier dark concept that used a hi-vis amber accent.
+
+Open either file in a browser. It's a single self-contained file with no libraries; Switzer and Inter fonts load from the web.
 
 ## Sections
 1. Header: logo, nav, "Find a tradie" CTA (fixed; turns light over light sections)
@@ -17,8 +19,9 @@ Open `index.html` in a browser. It's a single self-contained file with no librar
 12. Final CTA, footer (ABN/email/phone placeholders), sticky offer bar (hidden during the story)
 
 ## Tokens
-- Colours: ink `#0A0A0A`, paper `#FAFAF8`, paper-2 `#F1F0EC`, line `#E4E2DC` / `#262626`, muted `#6B6A66` / `#8E8D88`
-- Accent (single): hi-vis amber `#FFC21A`. Status: ok `#16A34A`, error `#DC2626`
+- Colours (light mode): ink `#191919`, white `#FFFFFF`, tint `#F7F6F5`, pink-soft `#FFEFFB`, line `#E9E7E5`, muted `#5F5E5C`
+- Accent (single, brand): pink `#FD37D6`. It only reaches 2.7:1 contrast on white, so use it for fills, highlight bars, buttons (with ink text) and the 3D lines, **never body text on white**. The final CTA band is solid pink with ink text
+- Status: ok `#16A34A`, error `#DC2626`
 - Type: Switzer 600 for display (tracking -3.5%, line-height 0.95), Inter for body, JetBrains Mono uppercase for eyebrows and HUD labels
 - Scale: hero title 112 / subtitle 22 (desktop), 56 / 16 (mobile). H2 88 / 22
 - Radius: 14 for cards, 24 for large panels, pill for buttons. Spacing: 4/8/16/24/32/48/64/96/128. Section padding 96–160
