@@ -118,6 +118,7 @@ document.addEventListener('click', e => {
   if (url.pathname === location.pathname) return;             // same page → native smooth scroll
   if (!/\.html$|\/$/.test(url.pathname)) return;
   e.preventDefault();
+  try { sessionStorage.setItem('lt-q:' + url.pathname.split('/').pop(), url.search); } catch (_) {}
   if (RM) { location.href = url.href; return; }
   document.body.classList.add('leaving');
   setTimeout(() => location.href = url.href, 420);
@@ -156,7 +157,19 @@ function illus(trade, variant = 0, label = '') {
 }
 const initials = n => n.split(/\s+/).map(w => w[0]).slice(0, 2).join('').toUpperCase();
 
-window.LT = { RM, $, $$, clamp, ease, esc, btn, ARROW, MARK, animate, stateOf, illus, initials };
+function params() {
+  let q = location.search;
+  if (!q) { try { q = sessionStorage.getItem('lt-q:' + location.pathname.split('/').pop()) || ''; } catch (_) {} }
+  return new URLSearchParams(q);
+}
+function go(href) {
+  const url = new URL(href, location.href);
+  try { sessionStorage.setItem('lt-q:' + url.pathname.split('/').pop(), url.search); } catch (_) {}
+  if (RM) { location.href = url.href; return; }
+  document.body.classList.add('leaving');
+  setTimeout(() => location.href = url.href, 420);
+}
+window.LT = { params, go, RM, $, $$, clamp, ease, esc, btn, ARROW, MARK, animate, stateOf, illus, initials };
 animate();
 // hero content shows immediately
 requestAnimationFrame(() => $$('.hero .blur-in, .hero .reveal, .page-hero .blur-in, .page-hero .reveal').forEach(el => el.classList.add('in')));

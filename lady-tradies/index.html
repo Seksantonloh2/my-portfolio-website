@@ -24,6 +24,7 @@
 }
 </script>
 <link rel="stylesheet" href="assets/site.css">
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body data-page="home">
 
@@ -281,7 +282,7 @@
 <script src="assets/site.js"></script>
 <script>
 (() => {
-const { RM, $, $$, clamp, ease, illus } = window.LT;
+const { RM, $, $$, clamp, ease, illus, go } = window.LT;
 
 /* ---------- Sticky offer bar (hidden over the hero, the build story and the footer) ---------- */
 const bar = $('#bar'), heroEl = $('.hero'), story = $('#story');
@@ -303,7 +304,7 @@ finder.addEventListener('submit', e => {
     pc.setAttribute('aria-invalid', 'true'); msg.className = 'finder-msg err';
     msg.textContent = 'Please enter a 4-digit Australian postcode.'; pc.focus(); return;
   }
-  location.href = 'directory.html?' + new URLSearchParams({ trade: ftrade.value, postcode: pc.value });
+  go('directory.html?' + new URLSearchParams({ trade: ftrade.value, postcode: pc.value }));
 });
 $$('.js-focus-finder').forEach(a => a.addEventListener('click', e => {
   e.preventDefault(); scrollTo({ top: 0, behavior: RM ? 'auto' : 'smooth' });

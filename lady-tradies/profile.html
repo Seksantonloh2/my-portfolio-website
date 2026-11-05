@@ -12,6 +12,7 @@
 <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body data-page="directory">
 <div id="site-header"></div>
@@ -21,8 +22,8 @@
 <script src="assets/site.js"></script>
 <script>
 (() => {
-const { $, $$, esc, illus, initials, animate, btn, ARROW } = window.LT;
-const id = new URLSearchParams(location.search).get('id');
+const { $, $$, esc, illus, initials, animate, btn, ARROW, params } = window.LT;
+const id = params().get('id');
 const t = window.LT_TRADIES.find(x => x.id === id) || window.LT_TRADIES[0];
 const idx = window.LT_TRADIES.indexOf(t);
 document.title = `${t.biz}: ${t.trade} in ${t.suburb} ${t.state} | Lady Tradies Australia`;

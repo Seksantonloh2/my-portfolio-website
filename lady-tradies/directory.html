@@ -12,6 +12,7 @@
 <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body data-page="directory">
 <div id="site-header"></div>
@@ -65,11 +66,11 @@
 <script src="assets/site.js"></script>
 <script>
 (() => {
-const { $, $$, esc, illus, initials, stateOf, animate, btn } = window.LT;
+const { $, $$, esc, illus, initials, stateOf, animate, btn, params } = window.LT;
 const DATA = window.LT_TRADIES;
 const TRADES = ['Carpenter', 'Electrician', 'Plumber', 'Painter', 'Tiler', 'Landscaper', 'Builder', 'Handywoman'];
 const PLURAL = { Carpenter: 'carpenters', Electrician: 'electricians', Plumber: 'plumbers', Painter: 'painters', Tiler: 'tilers', Landscaper: 'landscapers', Builder: 'builders', Handywoman: 'handywomen' };
-const qs = new URLSearchParams(location.search);
+const qs = params();
 const st = { trade: TRADES.includes(qs.get('trade')) ? qs.get('trade') : '', pc: /^\d{4}$/.test(qs.get('postcode') || '') ? qs.get('postcode') : '', open: false, sort: 'near' };
 
 const ftrade = $('#f-trade'), fpc = $('#f-pc'), fopen = $('#f-open'), fsort = $('#f-sort'), msg = $('#f-msg');
@@ -82,7 +83,8 @@ function sync() {
   const p = new URLSearchParams();
   if (st.trade) p.set('trade', st.trade);
   if (st.pc) p.set('postcode', st.pc);
-  history.replaceState(null, '', location.pathname + (p.toString() ? '?' + p : ''));
+  try { history.replaceState(null, '', location.pathname + (p.toString() ? '?' + p : '')); } catch (_) {}
+  try { sessionStorage.setItem('lt-q:directory.html', p.toString() ? '?' + p : ''); } catch (_) {}
 }
 
 function card(t, i) {
